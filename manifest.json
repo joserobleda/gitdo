@@ -1,0 +1,14 @@
+{
+    "name": "GitDo Chrome Extension",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "default_locale": "en",
+    "description": "Combine asignee: and preview-requested: Github search filters into a single one \"gitdo:\"",
+    "content_scripts": [
+        {
+            "matches": ["https://github.com/*"],
+            "js": ["app.js"],
+            "run_at": "document_end"
+        }
+    ]
+}
