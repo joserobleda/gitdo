@@ -21,6 +21,7 @@
   function drawEntries(entries) {
     const ul = drawUl();
 
+    document.querySelector('.states a.selected').childNodes[2].data = " " + entries.length + " Open";
 
     entries.forEach(entry => ul.appendChild(entry));
   }
