@@ -10,12 +10,12 @@
       return;
     }
 
-    const requested = fetchItems(location.href.replace('gitdo%3A', 'review-requested%3A'));
-    const assignee = fetchItems(location.href.replace('gitdo%3A', 'assignee%3A'));
+    const requested = get(location.href.replace('gitdo%3A', 'review-requested%3A')).then(findEntries);
+    const assignee = get(location.href.replace('gitdo%3A', 'assignee%3A')).then(findEntries);
 
     Promise.all([requested, assignee])
       .then(combineEntries)
-      .then(drawEntries)
+      .then(drawEntries);
   }
 
   function drawEntries(entries) {
@@ -32,11 +32,7 @@
       .reduce((carry, entry) => carry.filter(fltr => fltr.id == entry.id).length ? carry : carry.concat(entry), []);
   }
 
-  function fetchItems(url) {
-    return get(url).then(lookUpEntries);
-  }
-
-  function lookUpEntries(html) {
+  function findEntries(html) {
     var div = document.createElement('div');
     div.innerHTML = html;
 
