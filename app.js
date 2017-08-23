@@ -1,6 +1,6 @@
 (function(){
-	function run(ctx) {
-		ctx = ctx || document;
+  function run(ctx) {
+    ctx = ctx || document;
 
     if ('/issues' !== location.pathname) {
       return;
@@ -52,32 +52,32 @@
 
   function get(URL, cb) {
     return new Promise((resolve, reject) => {
-  		var xhr = new XMLHttpRequest();
-  		xhr.onreadystatechange = function () {
-  			if (xhr.readyState == 4) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
           if (xhr.status == 200) {
             return resolve(xhr.responseText);
           }
 
-  				reject();
-  			}
-  		};
+          reject();
+        }
+      };
 
-  		xhr.open("GET", URL, false);
-  		xhr.send(null);
+      xhr.open("GET", URL, false);
+      xhr.send(null);
     });
-	};
+  };
 
-	run();
+  run();
 
-	window.addEventListener('load', function () {
-		setTimeout(function () {
-			document.addEventListener("DOMSubtreeModified", function(e){
-				if (e.target.tagName.toLowerCase() === 'div' && e.target.hasAttribute('data-pjax') === true) {
-					run(e.target);
-					return;
-				}
-			});
-		}, 1000);
-	}, false);
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      document.addEventListener("DOMSubtreeModified", function(e){
+        if (e.target.tagName.toLowerCase() === 'div' && e.target.hasAttribute('data-pjax') === true) {
+          run(e.target);
+          return;
+        }
+      });
+    }, 1000);
+  }, false);
 }());
