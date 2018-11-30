@@ -21,7 +21,10 @@
   function drawEntries(entries) {
     const ul = drawUl();
 
-    document.querySelector('.states a.selected').childNodes[2].data = " " + entries.length + " Open";
+    const selected = document.querySelector('.states a.selected');
+    if (selected) {
+      selected.childNodes[2].data = " " + entries.length + " Open";
+    }
 
     entries.forEach(entry => ul.appendChild(entry));
   }
@@ -36,7 +39,7 @@
     var div = document.createElement('div');
     div.innerHTML = html;
 
-    return Array.prototype.slice.call(div.querySelectorAll('.page-content li'));
+    return Array.prototype.slice.call(div.querySelectorAll('.js-issue-row'));
   }
 
   function drawUl() {
@@ -50,21 +53,9 @@
     return ul;
   }
 
-  function get(URL, cb) {
-    return new Promise((resolve, reject) => {
-      var xhr = new XMLHttpRequest();
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4) {
-          if (xhr.status == 200) {
-            return resolve(xhr.responseText);
-          }
-
-          reject();
-        }
-      };
-
-      xhr.open("GET", URL, false);
-      xhr.send(null);
+  function get(URL) {
+    return fetch(URL).then(function(response) {
+      return response.text();
     });
   };
 

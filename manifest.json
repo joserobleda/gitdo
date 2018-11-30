@@ -1,6 +1,6 @@
 {
     "name": "GitDo Chrome Extension",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "manifest_version": 2,
     "default_locale": "en",
     "description": "Combine assignee: and preview-requested: Github search filters into a single one \"gitdo:\"",
