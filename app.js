@@ -2,7 +2,7 @@
   function run(ctx) {
     ctx = ctx || document;
 
-    if ('/issues' !== location.pathname) {
+    if ('/issues' !== location.pathname && '/pulls' !== location.pathname) {
       return;
     }
 
